@@ -131,13 +131,21 @@ html {
 
 #profile-info .details {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Zmniejszono minimalną szerokość kolumny */
+    gap: 10px; /* Dodano odstępy między kolumnami */
     flex: 1;
 }
 
 #profile-info p {
     margin: 5px 0;
     color: #586069;
+}
+
+/* Dodano styl, aby zawijać tekst w sekcji profilu */
+#profile-details p {
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 
 #profile-info a {
