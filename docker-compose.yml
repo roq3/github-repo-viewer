@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    image: node:18
+    container_name: roque-github-app
+    ports:
+      - "7123:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    working_dir: /app
+    command: sh -c "npm install && npx nodemon server.js"

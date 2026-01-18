@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Roque</title>
+    <script defer src="https://umami.webdevel.cc/umami" data-website-id="7ff375ae-b4a4-48b7-a769-e6d09ff0de6b"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .repo { margin: 10px 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .repo h3 { margin: 0; }
+        .repo p { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Moje Repozytoria na GitHubie</h1>
+    <div id="repos"></div>
+
+    <script>
+        async function fetchRepos() {
+            try {
+                const response = await fetch('/api/repos');
+                if (!response.ok) {
+                    throw new Error(`Błąd API: ${response.status} ${response.statusText}`);
+                }
+                const repos = await response.json();
+                const reposDiv = document.getElementById('repos');
+
+                if (repos.length === 0) {
+                    reposDiv.innerHTML = '<p>Brak repozytoriów.</p>';
+                    return;
+                }
+
+                repos.forEach(repo => {
+                    const repoDiv = document.createElement('div');
+                    repoDiv.className = 'repo';
+                    repoDiv.innerHTML = `
+                        <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+                        <p>${repo.description || 'Brak opisu'}</p>
+                        <p>Język: ${repo.language || 'Nieznany'}</p>
+                        <p>Gwiazdki: ${repo.stargazers_count}</p>
+                    `;
+                    reposDiv.appendChild(repoDiv);
+                });
+            } catch (error) {
+                console.error('Błąd podczas pobierania repozytoriów:', error);
+                document.getElementById('repos').innerHTML = `<p>Błąd: ${error.message}</p>`;
+            }
+        }
+
+        fetchRepos();
+    </script>
+</body>
+</html>
+

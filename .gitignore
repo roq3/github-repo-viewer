@@ -1,0 +1,25 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Docker files
+docker-compose.override.yml
+.dockerignore
+Dockerfile*
+
+# System files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Build output
+dist/
+build/
