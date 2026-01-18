@@ -24,7 +24,7 @@ case $COMMAND in
   dev)
     echo "Uruchamianie wersji deweloperskiej z nodemon..."
     docker-compose down
-    docker run --rm -it -v $(pwd):/app -w /app -p 7123:3000 node:current-alpine sh -c "npm install && npx nodemon server.js"
+    docker run -d --rm -v $(pwd):/app -w /app -p 7123:3000 node:current-alpine sh -c "npm install && npx nodemon server.js"
     ;;
   *)
     echo "Użycie: ./manage_docker.sh {up|down|restart|logs|dev}"

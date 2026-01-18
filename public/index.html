@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8" />
     <title>Roque</title>
@@ -20,17 +20,37 @@
             <img src="GitHub_Invertocat_White.svg" alt="GitHub Logo" class="octicon-mark-github">
             <span id="header-title">My GitHub Repositories</span>
             <select id="language-switcher">
-                <option value="en" selected>English</option>
-                <option value="pl">Polski</option>
+                <option value="pl" selected>Polski</option>
+                <option value="en">English</option>
             </select>
         </div>
     </header>
     <div class="container">
+        <div id="profile-info">
+            <img src="" alt="Avatar" id="profile-avatar">
+            <div class="details" id="profile-details">
+                <!-- Dane profilu zostaną tutaj wstawione dynamicznie -->
+            </div>
+        </div>
         <div id="repos"></div>
     </div>
 
     <script src="translations.js"></script>
     <script src="scripts.js"></script>
+    <script>
+        // Wywołanie funkcji po załadowaniu strony
+        document.addEventListener('DOMContentLoaded', () => {
+            const languageSwitcher = document.getElementById('language-switcher');
+
+            // Ustaw domyślny język na polski
+            languageSwitcher.value = 'pl';
+
+            // Wywołaj funkcje pobierające dane
+            setLanguage('pl');
+            renderProfile();
+            renderRepos();
+        });
+    </script>
 </body>
 </html>
 
